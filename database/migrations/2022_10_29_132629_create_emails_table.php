@@ -25,16 +25,6 @@ class CreateEmailsTable extends Migration
 			$table->string('from_name')->nullable();
 			$table->timestamps();
         });
-		/*
-		MAIL_MAILER=smtp
-		MAIL_HOST=smtp.gmail.com
-		MAIL_PORT=465
-		MAIL_USERNAME=baktybekova.ernis@mail.ru
-		MAIL_PASSWORD=PhsisD1e78qd7ynss5st
-		MAIL_ENCRYPTION=ssl
-		MAIL_FROM_ADDRESS=baktybekova.ernis@mail.ru
-		MAIL_FROM_NAME="${APP_NAME}"
-		*/
     }
 
     /**

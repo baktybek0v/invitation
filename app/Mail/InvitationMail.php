@@ -45,14 +45,7 @@ class InvitationMail extends Mailable
 
 		return $this->from($address)
 					->subject($title)
-					->view('bash.events.mailing.index3')
+					->view('bash.events.mailing.index4')
 					->with(['title' => $title]);
-					/*->attach(public_path('ivt.pdf'), [
-						'as' => 'name.pdf',
-						'mime' => 'application/pdf',
-					]);*/
-
-		// TODO add attaching the files
-			
     }
 }

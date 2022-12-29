@@ -8,15 +8,12 @@ use App\Models\Email;
 use App\Models\Event;
 use App\Models\Invitee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Yajra\DataTables\DataTables;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EventController extends Controller
 {
@@ -32,7 +29,6 @@ class EventController extends Controller
 				Mail::to($invitee->email)->send(new InvitationMail($event, $invitee));
 				$invitee->sended = true;
 				$invitee->save();
-				sleep(10);
 			}
 
 			if ($event->status == 'created')  {
@@ -152,11 +148,6 @@ class EventController extends Controller
 			'title_en' => 'bail|required_without_all:title_ru,title_ky',
 			'title_ru' => 'bail|required_without_all:title_en,title_ky',
 			'title_ky' => 'bail|required_without_all:title_en,title_ru',
-			'description_en' => 'bail|required_without_all:description_ru,description_ky',
-			'description_ru' => 'bail|required_without_all:description_en,description_ky',
-			'description_ky' => 'bail|required_without_all:description_en,description_ru',
-			'start_date' => 'required|date_format:Y-m-d',
-			'start_time' => 'required|date_format:H:i',
 			'file_invitees' => 'required|mimes:xlsx,xls'
 		]);
 		
@@ -237,6 +228,7 @@ class EventController extends Controller
 				"languages" => $sheet->getCell("K{$row}")->getValue(),
 				"duplication" => $sheet->getCell("L{$row}")->getValue(),
 			];
+			if (mb_strlen($input['email']) < 5) continue;
 
 			if (!filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
 				$fileName = $file->getClientOriginalName();
@@ -283,14 +275,12 @@ class EventController extends Controller
 				"organization_en" => $sheet->getCell("H{$row}")->getValue(),
 				"job_en" => $sheet->getCell("I{$row}")->getValue(),
 				"email" => $sheet->getCell("J{$row}")->getValue(),
-				"languages" => $sheet->getCell("K{$row}")->getValue(),
+				"languages" => "eng"
 			];
 
+
 			// валидация
-			if (!$input['title_en'] && !$input['title_ru']) 		continue;
-			if (!$input['full_name_en'] && !$input['full_name_ru']) continue;
-			if (!$input['languages']) 								continue;
-			if (!$input['email']) 									continue;
+			if (!$input['email']) 	continue;
 			
 			// создание и закрепление связи с событией
 			$invitee = Invitee::create($input);
@@ -338,12 +328,7 @@ class EventController extends Controller
 		$validator = Validator::make($request->all(), [
 			'title_en' => 'bail|required_without_all:title_ru,title_ky',
 			'title_ru' => 'bail|required_without_all:title_en,title_ky',
-			'title_ky' => 'bail|required_without_all:title_en,title_ru',
-			'description_en' => 'bail|required_without_all:description_ru,description_ky',
-			'description_ru' => 'bail|required_without_all:description_en,description_ky',
-			'description_ky' => 'bail|required_without_all:description_en,description_ru',
-			'start_date' => 'required|date_format:Y-m-d',
-			'start_time' => 'required|date_format:H:i',
+			'title_ky' => 'bail|required_without_all:title_en,title_ru'
 		]);
 
 		if ($validator->fails()) {

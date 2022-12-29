@@ -101,11 +101,11 @@
 
 
 <div class="form-group row">
-	<label class="col-md-3">Дата начала события<span class="text-danger">*</span></label>
+	<label class="col-md-3">Дата начала события</label>
 	<div class="col-md-6">
 		<div class="input-group date datetimepicker_date" id="kt_datetimepicker_1" data-target-input="nearest" data-provide="datepicker_1">
 			{!! Form::text('start_date', null, ['autocomplete' => 'off', 'class' => 'form-control datetimepicker-input '.
-				$errors->first('start_date', 'is-invalid'), "required", "placeholder" => "Дата начала", "data-target" => "#kt_datetimepicker_1"])
+				$errors->first('start_date', 'is-invalid'), "placeholder" => "Дата начала", "data-target" => "#kt_datetimepicker_1"])
 			!!}
 			<div class="input-group-append" data-target="#kt_datetimepicker_1" data-toggle="datetimepicker">
 				<span class="input-group-text">
@@ -117,11 +117,11 @@
 </div>
 
 <div class="form-group row">
-	<label class="col-md-3">Время начала события<span class="text-danger">*</span></label>
+	<label class="col-md-3">Время начала события</label>
 	<div class="col-md-6">
 		<div class="input-group date datetimepicker_time" id="kt_datetimepicker_2" data-target-input="nearest" data-provide="datepicker_2">
 			{!! Form::text('start_time', null, ['autocomplete' => 'off', 'class' => 'form-control datetimepicker-input '.
-				$errors->first('start_time', 'is-invalid'), "required", "placeholder" => "24-часовой формат", "data-target" => "#kt_datetimepicker_2"]) 
+				$errors->first('start_time', 'is-invalid'), "placeholder" => "24-часовой формат", "data-target" => "#kt_datetimepicker_2"]) 
 			!!} 
 			<div class="input-group-append" data-target="#kt_datetimepicker_2" data-toggle="datetimepicker">
 				<span class="input-group-text">
