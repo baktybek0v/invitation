@@ -1,0 +1,74 @@
+@import 'media';
+@import 'print';
+
+i{
+    color: inherit !important;
+}
+
+input:disabled::-webkit-input-placeholder { /* WebKit browsers */
+    color: #3f4254;
+    font-weight: 500;
+}
+input:disabled:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #3f4254;
+    font-weight: 500;
+}
+input:disabled::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #3f4254;
+    font-weight: 500;
+}
+input:disabled:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #3f4254;
+    font-weight: 500;
+}
+
+// .dropzone {
+//     border: 2px dashed #dde2ec;
+//     min-height: auto;
+//     padding: 0;
+//     border-radius: 3px;
+
+//     &:hover{
+//         border: 2px dashed #047bf8;
+//         background: #f2f6fa;
+//         h6{
+//             color: #047bf8;
+//         }
+//     }
+
+//     &.dz-started{
+//         background: #f2f6fa;
+//     }
+
+//     .dz-preview.dz-image-preview{
+//         background: none;
+//     }
+
+//     .dz-image img{
+//         height: 120px;
+//         width: 120px;
+//         object-fit: cover;
+//     }
+// }
+
+.bootstrap-select .dropdown-menu.inner > li > a .text{
+    white-space: normal;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice{
+    white-space: normal;
+}
+
+.header{
+    .header{
+        &-top{
+            background-color: #00247e;
+        }
+    }
+}
+
+.fc-content{
+    .label.label-inline{
+        padding: 0.15rem 0.25rem !important;
+    }
+}
